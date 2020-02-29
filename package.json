@@ -13,7 +13,14 @@
   },
   "scripts": {
     "build": "gulp build",
+    "dev": "gulp browser-sync",
     "start": "http-server -c-1 src",
     "format": "prettier --write **/*"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.7.4",
+    "browser-sync": "^2.26.7",
+    "gulp-postcss": "^8.0.0",
+    "tailwindcss": "^1.2.0"
   }
 }

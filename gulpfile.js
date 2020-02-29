@@ -1,6 +1,8 @@
 const gulp = require("gulp");
 const image = require("gulp-image");
+const postcss = require("postcss");
 const htmlmin = require("gulp-htmlmin");
+const browserSync = require("browser-sync").create();
 
 function images() {
   return gulp
@@ -14,7 +16,10 @@ function public() {
 }
 
 function styles() {
-  return gulp.src("src/*.css").pipe(gulp.dest("public"));
+  return gulp
+    .src("src/styles.css")
+    .pipe(postcss())
+    .pipe(gulp.dest("public"));
 }
 
 function html() {
@@ -25,3 +30,21 @@ function html() {
 }
 
 gulp.task("build", gulp.parallel(images, html, styles, public));
+
+gulp.task("browser-sync", function() {
+  browserSync.init({
+    server: {
+      baseDir: "./src"
+    }
+  });
+
+  gulp.watch("src/*.html", function(done) {
+    browserSync.reload();
+    done();
+  });
+
+  gulp.watch("src/*.css", function(done) {
+    browserSync.reload();
+    done();
+  });
+});
