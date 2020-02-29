@@ -1,0 +1,19 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-image": "^6.0.0",
+    "http-server": "*",
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "start": "http-server -c-1 src",
+    "format": "prettier --write **/*"
+  }
+}
