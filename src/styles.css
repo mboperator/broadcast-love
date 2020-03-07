@@ -114,10 +114,7 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
-.articles2 {
-  display: flex;
-  justify-content: space-evenly;
-}
+
 .article {
   flex: 1;
   margin-top: 45px;
