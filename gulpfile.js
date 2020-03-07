@@ -16,10 +16,7 @@ function public() {
 }
 
 function styles() {
-  return gulp
-    .src("src/styles.css")
-    .pipe(postcss())
-    .pipe(gulp.dest("public"));
+  return gulp.src("src/styles.css").pipe(gulp.dest("public"));
 }
 
 function html() {
