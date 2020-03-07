@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/styles.css" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
   </head>
- 
+
   <body>
     <div class="background">
       <div class="background-image-container">
@@ -38,10 +38,9 @@
       </div>
     </div>
 
-
     <main class="header">
       <div class="navbar" href="#">
-        <p id="bar">Home  |  Blog  |  Get in Touch</p>
+        <p id="bar">Home | Blog | Get in Touch</p>
       </div>
       <div class="headline">
         <h1 class="title">
@@ -51,148 +50,82 @@
     </main>
 
     <section class="mission">
-          <center><p>
-            To inspire, edify and cultivate growth in Christ for the glory of God<br>
-            <p>Broadcast.love</p>
-          </p>
-        </center>
-        </a>
-    <section class="articles">
-      <a class="article article-link">
-          <h3>
-            Inspire
-          </h3>
-      
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel
-            augue nec ex egestas pellentesque. Etiam malesuada tincidunt leo, at
-            commodo turpis lobortis in. Etiam blandit tempus sem, sed iaculis
-            lectus feugiat in.
-            <span id ="dots">...</span> <span id="more" >porttitor nibh mi. Morbi pretium molestie
-            malesuada. Curabitur Cultivate
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Quisque vel augue nec ex egestas pellentesque. 
-             Etiam malesuada tincidunt leo, at commodo turpis lobortis in. 
-             Etiam blandit tempus sem, sed iaculis lectus feugiat in.
-             Integer porttitor nibh mi. Morbi pretium molestie manec</span>
-          </p>
-          <button onclick="myFunction()"
-          id="myBtn">Read more </button>
-          
-        
-  
-      </a>
-      </a>
-      <a class="article article-link" href="#">
-          <h3>
-            Cultivate
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel
-            augue nec ex egestas pellentesque. Etiam malesuada tincidunt leo, at
-            commodo turpis lobortis in. Etiam blandit tempus sem, sed iaculis
-            lectus feugiat in. Integer porttitor nibh mi. Morbi pretium molestie
-            ma
-          </p>
-        </a>
-      <a class="article article-link" href="#">
-          <h3>
-            Edify
-          </h3>
-          <p>
-            augue nec ex egestas pellentesque. Etiam malesuada tincidunt leo, at
-            commodo turpis lobortis in. Etiam blandit tempus sem, sed iaculis
-            lectus Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Quisque vel feugiat in. Integer porttitor nibh mi. Morbi pretium
-            molestie malesuada. Curabitur nec congue nisl. Praesent sit amet
-            massa vitae est pretium pretium vitae sit amet odio.
-          </p>
-        </a>
-      
+      <center>
+        <p>
+          To inspire, edify and cultivate growth in Christ for the glory of
+          God<br />
+          Broadcast.love
+        </p>
+      </center>
     </section>
 
-    <section class="articles2">
-      <a class="article article-link" href="#">
-          <h3>
-            Inspire
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel
-            augue nec ex egestas pellentesque. Etiam malesuada tincidunt leo, at
-            commodo turpis lobortis in. Etiam blandit tempus sem, sed iaculis
-            lectus feugiat in. Integer porttitor nibh mi. Morbi pretium molestie
-            malesuada. Curabitur nec
-          </p>
-        </a>
-      </a>
-      <a class="article article-link" href="#">
-          <h3>
-            Cultivate
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel
-            augue nec ex egestas pellentesque. Etiam malesuada tincidunt leo, at
-            commodo turpis lobortis in. Etiam blandit tempus sem, sed iaculis
-            lectus feugiat in. Integer porttitor nibh mi. Morbi pretium molestie
-            ma
-          </p>
-        </a>
-      <a class="article article-link" href="#">
-          <h3>
-            Edify
-          </h3>
-          <p>
-            augue nec ex egestas pellentesque. Etiam malesuada tincidunt leo, at
-            commodo turpis lobortis in. Etiam blandit tempus sem, sed iaculis
-            lectus Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Quisque vel feugiat in. Integer porttitor nibh mi. Morbi pretium
-            molestie malesuada. Curabitur nec congue nisl. Praesent sit amet
-            massa vitae est pretium pretium vitae sit amet odio.
-          </p>
-        </a>
-      
-    </section>
+    <section class="articles"></section>
+
     <a class="footer">
-
-        
-
- <center><p>Broadcast.love@Copy2020</p></center> 
-
- </a>
+      <center><p>Copyright © Broadcast Love 2020</p></center>
+    </a>
   </body>
+
   <script>
-function myFunction()
-{
+    function myFunction() {
+      var dots = document.getElementById("dots");
+      var moreText = document.getElementById("more");
+      var btnText = document.getElementById("myBtn");
 
-  var dots =
-   document.getElementById("dots");
-  var moreText = 
-  document.getElementById("more");
-  var btnText = 
-  document.getElementById("myBtn");
+      if (dots.style.display == "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
 
-if (dots.style.display == "none"){
+    const ARTICLES_URL =
+      "https://public-api.wordpress.com/wp/v2/sites/broadcastdotlove.wordpress.com/posts";
 
-  dots.style.display = "inline";
-  btnText.innerHTML = "Read more";
-  moreText.style.display = "none";
+    function renderArticle(article) {
+      const articlesDOMNode = document.querySelector(".articles");
 
-}
-else{
+      function createArticleMarkup(article) {
+        return `
+          <div class="article article-link">
+            <h3>
+              ${article.title}
+            </h3>
 
+            <div class="content">
+              ${article.content}
+            </div>
+          </div>
 
-  dots.style.display = "none";
-  btnText.innerHTML = "Read less";
-  moreText.style.display = "inline";
-}
+        `;
+      }
 
+      articlesDOMNode.innerHTML += createArticleMarkup(article);
+    }
 
+    function loadArticles() {
+      // fetch articles
+      fetch(ARTICLES_URL)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(listOfArticles) {
+          // loop over articles
+          listOfArticles.forEach(function(article) {
+            // render articles
+            renderArticle({
+              title: article.title.rendered,
+              excerpt: article.excerpt.rendered,
+              content: article.content.rendered
+            });
+          });
+        });
+    }
 
-
-}
-
-
-
-
+    document.addEventListener("DOMContentLoaded", loadArticles);
   </script>
 </html>
