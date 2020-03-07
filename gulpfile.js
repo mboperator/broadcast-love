@@ -11,6 +11,10 @@ function images() {
     .pipe(gulp.dest("public/images"));
 }
 
+function videos() {
+  return gulp.src("src/videos/*").pipe(gulp.dest("public/images"));
+}
+
 function public() {
   return gulp.src("src/public/*").pipe(gulp.dest("public"));
 }
@@ -26,7 +30,7 @@ function html() {
     .pipe(gulp.dest("public"));
 }
 
-gulp.task("build", gulp.parallel(images, html, styles, public));
+gulp.task("build", gulp.parallel(images, html, styles, public, videos));
 
 gulp.task("browser-sync", function() {
   browserSync.init({
