@@ -17,9 +17,8 @@ body {
 }
 
 body {
-  display: flex;
   background: white;
-  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+  font-family: "Spartan", "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
   margin: 0;
@@ -44,6 +43,7 @@ body {
   bottom: 0;
   overflow: hidden;
 }
+
 .navbar {
   align-self: flex-end;
   color: azure;
@@ -55,17 +55,22 @@ body {
 }
 
 .background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 20vh;
+  position: relative;
+  height: 90vh;
+  width: 100vw;
 }
 
 .background-image-container {
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+.background-image-container video {
+  height: 80%;
+  width: 128vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 56.25vw; /* 100 * 9 / 16 */
 }
 
 .background-image-container div {
@@ -132,7 +137,7 @@ body {
 }
 .content {
   text-align: center;
-  line-height: 40px;
+  line-height: 45px;
 }
 
 .article:hover {
@@ -151,7 +156,6 @@ body {
 }
 .header {
   text-decoration: none;
-  color: darkgoldenrod;
   text-align: justify;
   font-weight: bold;
   font-size: 15px;
