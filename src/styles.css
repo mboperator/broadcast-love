@@ -19,9 +19,9 @@ body {
 body {
   display: flex;
   background: white;
-  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Spartan", BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   margin: 0;
   position: relative;
 }
@@ -106,9 +106,6 @@ body {
   display: inline-block;
   background-color: white;
 }
-#more {
-  display: none;
-}
 
 .articles {
   display: flex;
@@ -124,18 +121,21 @@ body {
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
   max-width: 800px;
+  background-color: #fff;
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 }
+
 .article h3 {
   margin-bottom: 24px;
 }
+
 .content {
   text-align: center;
   line-height: 40px;
 }
 
-.article:hover {
+.article:hover:not(.active) {
   transform: translateY(-2px);
   box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
@@ -149,6 +149,7 @@ body {
   text-decoration: none;
   color: black;
 }
+
 .header {
   text-decoration: none;
   color: darkgoldenrod;
@@ -160,10 +161,12 @@ body {
 .article h3 {
   text-align: center;
 }
+
 .headline {
   margin-top: auto;
   margin-bottom: auto;
 }
+
 @media screen and (max-width: 1024px) {
   .mission {
     text-align: center;

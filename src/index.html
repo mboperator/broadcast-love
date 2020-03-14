@@ -29,6 +29,10 @@
     />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Spartan&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -49,6 +53,7 @@
       </div>
     </main>
 
+    <section class="articles"></section>
     <section class="mission">
       <center>
         <p>
@@ -58,33 +63,58 @@
         </p>
       </center>
     </section>
-
-    <section class="articles"></section>
-
     <a class="footer">
       <center><p>Copyright © Broadcast Love 2020</p></center>
     </a>
   </body>
 
   <script>
-    function myFunction() {
-      var dots = document.getElementById("dots");
-      var moreText = document.getElementById("more");
-      var btnText = document.getElementById("myBtn");
-
-      if (dots.style.display == "none") {
-        dots.style.display = "inline";
-        btnText.innerHTML = "Read more";
-        moreText.style.display = "none";
-      } else {
-        dots.style.display = "none";
-        btnText.innerHTML = "Read less";
-        moreText.style.display = "inline";
-      }
-    }
-
     const ARTICLES_URL =
       "https://public-api.wordpress.com/wp/v2/sites/broadcastdotlove.wordpress.com/posts";
+
+    function connectShowBehavior() {
+      // Add an onClick to every article
+      const articles = document.querySelectorAll(".article");
+      // onClick should toggle a class on to the article
+      articles.forEach(article => {
+        article.addEventListener("click", e => {
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.top = 0;
+          overlay.style.left = 0;
+          overlay.style.right = 0;
+          overlay.style.bottom = 0;
+          overlay.style.zIndex = 9999;
+          overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+
+          // Clone Element with Fixed Position
+          const clone = article.cloneNode(true);
+          clone.classList.toggle("active");
+          const scrollY = window.scrollY;
+
+          clone.style.position = "fixed";
+          clone.style.top = "20px";
+          clone.style.left = 0;
+          clone.style.right = 0;
+          clone.style.bottom = "20px";
+          clone.style.margin = "0 auto";
+          clone.style.overflow = "scroll";
+          clone.style.zIndex = 10000;
+
+          document.body.style.overflow = "hidden";
+          article.style.opacity = 0;
+          document.body.appendChild(overlay);
+          document.body.appendChild(clone);
+
+          clone.addEventListener("click", e => {
+            document.body.style.overflow = "scroll";
+            article.style.opacity = 1;
+            document.body.removeChild(overlay);
+            document.body.removeChild(clone);
+          });
+        });
+      });
+    }
 
     function renderArticle(article) {
       const articlesDOMNode = document.querySelector(".articles");
@@ -109,7 +139,7 @@
 
     function loadArticles() {
       // fetch articles
-      fetch(ARTICLES_URL)
+      return fetch(ARTICLES_URL)
         .then(function(response) {
           return response.json();
         })
@@ -126,6 +156,8 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", loadArticles);
+    document.addEventListener("DOMContentLoaded", () => {
+      loadArticles().then(connectShowBehavior);
+    });
   </script>
 </html>
