@@ -157,17 +157,26 @@
 
       function createArticleMarkup(article) {
         return `
-          <a href="/#${article.slug}" class="article-link">
-            <div class="article" data-slug=${article.slug}>
+          <div class="article" data-slug=${article.slug}>
+            <a href="/#${article.slug}" class="article-link">
               <h3>
                 ${article.title}
               </h3>
+            </a>
 
-              <div class="content">
-                ${article.content}
-              </div>
+            <div class="content">
+              ${article.content}
             </div>
-          </a>
+
+            <div class="share-links">
+              <a 
+                class="twitter-share-button" 
+                href="https://twitter.com/intent/tweet?text=This one spoke to me.&url=https://broadcast.love%2F%23${article.slug}"
+              >
+                Tweet
+              </a>
+            </div>
+          </div>
         `;
       }
 
@@ -197,5 +206,25 @@
     document.addEventListener("DOMContentLoaded", () => {
       loadArticles().then(connectShowBehavior);
     });
+  </script>
+
+  <script>
+    window.twttr = (function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    })(document, "script", "twitter-wjs");
   </script>
 </html>
