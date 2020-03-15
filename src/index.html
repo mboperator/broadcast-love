@@ -169,12 +169,16 @@
             </div>
 
             <div class="share-links">
-              <a 
-                class="twitter-share-button" 
-                href="https://twitter.com/intent/tweet?text=This one spoke to me.&url=https://broadcast.love%2F%23${article.slug}"
-              >
-                Tweet
-              </a>
+              <div>
+                <a 
+                  class="twitter-share-button" 
+                  href="https://twitter.com/intent/tweet?text=This one spoke to me.&url=https://broadcast.love%2F%23${article.slug}"
+                >
+                  Tweet
+                </a>
+              </div>
+
+              <div class="fb-share-button" data-href="https://broadcast.love" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbroadcast.love%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
             </div>
           </div>
         `;
@@ -227,4 +231,12 @@
       return t;
     })(document, "script", "twitter-wjs");
   </script>
+
+  <div id="fb-root"></div>
+  <script
+    async
+    defer
+    crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"
+  ></script>
 </html>
