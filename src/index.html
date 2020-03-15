@@ -93,8 +93,8 @@
 
         modal.style.position = "fixed";
         modal.style.top = "20px";
-        modal.style.left = 0;
-        modal.style.right = 0;
+        modal.style.left = "20px";
+        modal.style.right = "20px";
         modal.style.bottom = "20px";
         modal.style.margin = "0 auto";
         modal.style.overflow = "scroll";
@@ -130,12 +130,13 @@
       // onClick should toggle a class on to the article
       articles.forEach(article => {
         const modal = createArticleModal(article);
-        article.addEventListener("click", e => {
+        article.addEventListener("click", () => {
           modal.show();
           document.body.style.overflow = "hidden";
           article.style.opacity = 0;
 
           modal.onHide(() => {
+            history.pushState(undefined, undefined, "/");
             document.body.style.overflow = "scroll";
             article.style.opacity = 1;
           });
@@ -148,16 +149,17 @@
 
       function createArticleMarkup(article) {
         return `
-          <div class="article article-link">
-            <h3>
-              ${article.title}
-            </h3>
+          <a href="/#${article.slug}" class="article-link">
+            <div class="article">
+              <h3>
+                ${article.title}
+              </h3>
 
-            <div class="content">
-              ${article.content}
+              <div class="content">
+                ${article.content}
+              </div>
             </div>
-          </div>
-
+          </a>
         `;
       }
 
@@ -173,8 +175,10 @@
         .then(function(listOfArticles) {
           // loop over articles
           listOfArticles.forEach(function(article) {
+            console.log({ article });
             // render articles
             renderArticle({
+              slug: article.slug,
               title: article.title.rendered,
               excerpt: article.excerpt.rendered,
               content: article.content.rendered
