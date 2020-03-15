@@ -76,10 +76,9 @@
       function createOverlay() {
         const overlay = document.createElement("div");
         overlay.style.position = "fixed";
-        overlay.style.top = 0;
+        overlay.style.bottom = "-9999px";
         overlay.style.left = 0;
         overlay.style.right = 0;
-        overlay.style.bottom = 0;
         overlay.style.zIndex = 9999;
         overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 
@@ -92,10 +91,10 @@
         const scrollY = window.scrollY;
 
         modal.style.position = "fixed";
-        modal.style.top = "20px";
+        modal.style.top = "";
         modal.style.left = "20px";
         modal.style.right = "20px";
-        modal.style.bottom = "20px";
+        modal.style.bottom = "-9999px";
         modal.style.margin = "0 auto";
         modal.style.overflow = "scroll";
         modal.style.zIndex = 10000;
@@ -108,15 +107,22 @@
       const modal = createModalFromArticle(article);
 
       modal.addEventListener("click", e => {
-        document.body.removeChild(overlay);
-        document.body.removeChild(modal);
+        overlay.style.bottom = "-9999px";
+        modal.style.bottom = "-9999px";
+        overlay.style.top = "";
+        modal.style.top = "";
         onHide();
       });
 
+      document.body.appendChild(overlay);
+      document.body.appendChild(modal);
+
       return {
         show() {
-          document.body.appendChild(overlay);
-          document.body.appendChild(modal);
+          overlay.style.top = "0";
+          modal.style.top = "20px";
+          overlay.style.bottom = "0";
+          modal.style.bottom = "20px";
         },
         onHide(cb) {
           onHide = cb;
