@@ -150,6 +150,15 @@ body {
   color: black;
 }
 
+.share-links {
+  display: flex;
+  justify-content: center;
+}
+
+.share-links > div {
+  margin-right: 5px;
+}
+
 .header {
   text-decoration: none;
   color: darkgoldenrod;
